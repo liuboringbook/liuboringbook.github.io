@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>html面试题 | 无聊才读书-博客</title><meta name="description" content="前端面试题基础篇HTML，HTTP，web综合问题1. 前端需要注意哪些SEO 合理使用title ，description，keywords 语义化的HTML代码 重要内容HTML代码放在最前面 重要内容不要用JS输出 少用iframe 非装饰性图片必须加alt 提高网站访问速度  2. &lt;img&gt;的title和alt有什么区别 title通常当鼠标滑动到元素上的时候显示 alt是i"><meta name="keywords" content="Vue,面试,ES6,webpack,node,前端"><meta name="author" content="刘如刚"><meta name="copyright" content="刘如刚"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://blog.liurugang.cn/posts/7559/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="html面试题"><meta property="og:url" content="http://blog.liurugang.cn/posts/7559/"><meta property="og:site_name" content="无聊才读书-博客"><meta property="og:description" content="前端面试题基础篇HTML，HTTP，web综合问题1. 前端需要注意哪些SEO 合理使用title ，description，keywords 语义化的HTML代码 重要内容HTML代码放在最前面 重要内容不要用JS输出 少用iframe 非装饰性图片必须加alt 提高网站访问速度  2. &lt;img&gt;的title和alt有什么区别 title通常当鼠标滑动到元素上的时候显示 alt是i"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2021-01-26T08:18:08.423Z"><meta property="article:modified_time" content="2021-01-26T10:51:49.747Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="pm2" href="http://blog.liurugang.cn/posts/40620/"><link rel="next" title="剖析JavaScriptAMDCMDCOMMONJSES6模块化" href="http://blog.liurugang.cn/posts/35712/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-01-26 18:51:49'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前端面试题"><span class="toc-number">1.</span> <span class="toc-text">前端面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础篇"><span class="toc-number">1.1.</span> <span class="toc-text">基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML，HTTP，web综合问题"><span class="toc-number">1.1.1.</span> <span class="toc-text">HTML，HTTP，web综合问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-前端需要注意哪些SEO"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1. 前端需要注意哪些SEO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-lt-img-gt-的title和alt有什么区别"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2. &lt;img&gt;的title和alt有什么区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-HTTP的几种请求方法用途"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">3. HTTP的几种请求方法用途</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-从浏览器地址栏输入url到显示页面的步骤"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">4. 从浏览器地址栏输入url到显示页面的步骤</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-如何进行网站性能优化"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">5. 如何进行网站性能优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-HTTP状态码及含义"><span class="toc-number">1.1.1.6.</span> <span class="toc-text">6. HTTP状态码及含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-语义化的理解"><span class="toc-number">1.1.1.7.</span> <span class="toc-text">7. 语义化的理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-介绍一下你对浏览器内核的理解"><span class="toc-number">1.1.1.8.</span> <span class="toc-text">8. 介绍一下你对浏览器内核的理解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-HTML5有哪些新特性，移除了哪些元素？"><span class="toc-number">1.1.1.9.</span> <span class="toc-text">9. HTML5有哪些新特性，移除了哪些元素？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-请描述一下cookies，sessionStorage和localStorage的区别？"><span class="toc-number">1.1.1.10.</span> <span class="toc-text">10. 请描述一下cookies，sessionStorage和localStorage的区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-iframe有哪些缺点"><span class="toc-number">1.1.1.11.</span> <span class="toc-text">11. iframe有哪些缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-WEB标准以及W3C标准是什么？"><span class="toc-number">1.1.1.12.</span> <span class="toc-text">12. WEB标准以及W3C标准是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-Doctype作用？"><span class="toc-number">1.1.1.13.</span> <span class="toc-text">13. Doctype作用？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-HTML全局属性有哪些"><span class="toc-number">1.1.1.14.</span> <span class="toc-text">14. HTML全局属性有哪些</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-你能描述一下渐进增强和优雅降级之间的不同吗？"><span class="toc-number">1.1.1.15.</span> <span class="toc-text">15. 你能描述一下渐进增强和优雅降级之间的不同吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-简述一下src与href的区别"><span class="toc-number">1.1.1.16.</span> <span class="toc-text">16. 简述一下src与href的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-页面访问cookie的限制条件"><span class="toc-number">1.1.1.17.</span> <span class="toc-text">17. 页面访问cookie的限制条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cookie的作用于弊端"><span class="toc-number">1.1.1.18.</span> <span class="toc-text">cookie的作用于弊端</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">无聊才读书-博客</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">html面试题</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-01-26 16:18:08"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-01-26</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-01-26 18:51:49"><i class="fas fa-history fa-fw"></i> 更新于 2021-01-26</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="前端面试题"><a href="#前端面试题" class="headerlink" title="前端面试题"></a>前端面试题</h1><h2 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h2><h3 id="HTML，HTTP，web综合问题"><a href="#HTML，HTTP，web综合问题" class="headerlink" title="HTML，HTTP，web综合问题"></a>HTML，HTTP，web综合问题</h3><h4 id="1-前端需要注意哪些SEO"><a href="#1-前端需要注意哪些SEO" class="headerlink" title="1. 前端需要注意哪些SEO"></a>1. 前端需要注意哪些SEO</h4><ul>
+<li>合理使用title ，description，keywords</li>
+<li>语义化的HTML代码</li>
+<li>重要内容HTML代码放在最前面</li>
+<li>重要内容不要用JS输出</li>
+<li>少用iframe</li>
+<li>非装饰性图片必须加alt</li>
+<li>提高网站访问速度</li>
+</ul>
+<h4 id="2-lt-img-gt-的title和alt有什么区别"><a href="#2-lt-img-gt-的title和alt有什么区别" class="headerlink" title="2. &lt;img&gt;的title和alt有什么区别"></a>2. <code>&lt;img&gt;</code>的title和alt有什么区别</h4><ul>
+<li>title通常当鼠标滑动到元素上的时候显示</li>
+<li>alt是<code>img</code>的特有属性，是图片内容的等价描述，用于图片无法加载时显示，读屏器阅读图片。可以提高图片高可访问性。搜索引擎会重点分析</li>
+</ul>
+<h4 id="3-HTTP的几种请求方法用途"><a href="#3-HTTP的几种请求方法用途" class="headerlink" title="3. HTTP的几种请求方法用途"></a>3. HTTP的几种请求方法用途</h4><ul>
+<li>GET 方法 。 发送一个请求来取得服务器上的某一资源</li>
+<li>POST方法。向URL指定的资源提交数据或附加新的数据</li>
+<li>DELETE方法。删除服务器上的某资源</li>
+<li>CONNECT方法。把请求连接转换到透明的TCP/IP通道<h4 id="4-从浏览器地址栏输入url到显示页面的步骤"><a href="#4-从浏览器地址栏输入url到显示页面的步骤" class="headerlink" title="4. 从浏览器地址栏输入url到显示页面的步骤"></a>4. 从浏览器地址栏输入url到显示页面的步骤</h4></li>
+</ul>
+<p>基础版本</p>
+<ul>
+<li>浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发送请求</li>
+<li>服务器交给后台处理完成后返回数据，浏览器接收文件(HTML,JS,CSS,图像等)</li>
+<li>浏览器对加载到的资源(HTML,JS,CSS等等)进行语法解析，建立相应的内部数据结构（如DOM树，CSSOM树）</li>
+<li>载入解析到的资源文件，渲染页面，完成。</li>
+</ul>
+<p>详细版</p>
+<ul>
+<li><p>在浏览器地址栏输入URL</p>
+</li>
+<li><p>浏览器查看缓存，如果请求资源在缓存中并且新鲜，跳转到转码步骤</p>
+<ul>
+<li>如果资源未缓存，发起新请求</li>
+<li>如果已缓存，检验是否足够新鲜，足够新鲜直接提供给客户端，否则与服务器进行验证</li>
+<li>检验新鲜通常由两个HTTP头进行控制EXpires和Cache-Control<ul>
+<li>HTTP1.0提供expires，值为一个绝对时间表示缓存新鲜日期</li>
+<li>HTTP1.1增加了Cache-control：max-age=，值为以秒为单位的最大新鲜时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>浏览器解析URL获取协议，主机，端口，path</p>
+</li>
+<li><p>浏览器组装一个HTTP(GET)请求报文</p>
+</li>
+<li><p>浏览器获取主机IP地址，过程如下：</p>
+<ul>
+<li>浏览器缓存</li>
+<li>本机缓存</li>
+<li>hosts文件</li>
+<li>路由器缓存</li>
+<li>DNS缓存</li>
+<li>DNS递归查询</li>
+</ul>
+</li>
+<li><p>打开一个socket与目标IP地址，端口建立TCP链接，三次握手如下：</p>
+<ul>
+<li>客户端发送一个TCP的SYN=1，Seq=x的包到服务器端口</li>
+<li>服务器发挥SYN=1，ACK=x+1,Seq=Y的响应包</li>
+<li>客户端发送ACK=Y+1,Seq =z</li>
+</ul>
+</li>
+<li><p>TCP链接建立以后发送HTTP请求</p>
+</li>
+<li><p>服务器接收请求并解析，处理程序读取晚会智能请求并准备HTTP响应，可以需要查询数据库等操作</p>
+</li>
+<li><p>服务器将响应报文通过TCP连接发送回浏览器</p>
+</li>
+<li><p>浏览器接收HTTP响应，然后根据情况选择关闭TCP连接或者保留重用，广播TCP的四次握手如下：</p>
+<ul>
+<li>主动方发送Fin=1 Ack=z，Seq=x报文</li>
+<li>被动方发送Ack=x+1,Seq=z报文</li>
+<li>被动方大宋Fin=1，ACK=x,Seq=Y报文</li>
+<li>主动方大宋ACK=Y，Seq=x报文</li>
+</ul>
+</li>
+<li><p>浏览器检查响应状态码：是否为1xx,3xx,4xx,5xx，这些情况处理与2xx不同</p>
+</li>
+<li><p>如果资源可缓存，进行缓存</p>
+</li>
+<li><p>解析HTML文档，构建DOM树，下载资源，构建cssom树，执行JS脚本</p>
+</li>
+<li><p>构建DOM树</p>
+<ul>
+<li>根据HTML规范将字符流解析为标记</li>
+<li>词法分析将标记转换为对象并定义属性和规则</li>
+<li>根据HTML标记关系将对象组成DOM树</li>
+</ul>
+</li>
+<li><p>解析构成中遇到图片，样式表，js文件，启动下载</p>
+</li>
+<li><p>构建CSSOM树</p>
+<ul>
+<li>字符流转换成标记流</li>
+<li>根据标记创建节点</li>
+<li>节点创建CSSOM树</li>
+</ul>
+</li>
+<li><p>根据DOM树和CSSOM树构建渲染树</p>
+<ul>
+<li>从DOM树的根节点遍历所有可见节点</li>
+<li>对每一个可见节点，找到恰当的CSSOM规则并应用</li>
+<li>发布可视节点的内容和计算样式</li>
+</ul>
+</li>
+<li><p>JS引擎解析过程</p>
+</li>
+<li><p>显示页面</p>
+</li>
+</ul>
+<h4 id="5-如何进行网站性能优化"><a href="#5-如何进行网站性能优化" class="headerlink" title="5. 如何进行网站性能优化"></a>5. 如何进行网站性能优化</h4><ul>
+<li>content方面<ul>
+<li>减少HTTP请求：合并文件，css精灵(雪碧图），inline Image(内联图片)</li>
+<li>减少DNS查询:DNS缓存，将资源分布到恰当数量的主机名</li>
+<li>减少DOM元素数量</li>
+</ul>
+</li>
+<li>Cookie方面<ul>
+<li>减少cookie大小</li>
+</ul>
+</li>
+<li>css方面<ul>
+<li>将样式表放在页面的顶部</li>
+<li>不使用css表达式</li>
+<li>使用<code>&lt;link&gt;</code>不使用@import</li>
+</ul>
+</li>
+<li>JavaScript方面<ul>
+<li>将脚本放到页面底部</li>
+<li>将JavaScript和css从外部引入</li>
+<li>压缩JavaScript和css</li>
+<li>删除不需要的脚本</li>
+<li>减少DOM访问</li>
+</ul>
+</li>
+<li>图片方面<ul>
+<li>优化图片：根据实际颜色需要选择色深，压缩</li>
+<li>优化css图片</li>
+<li>不要在HTML中拉伸图片</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-HTTP状态码及含义"><a href="#6-HTTP状态码及含义" class="headerlink" title="6. HTTP状态码及含义"></a>6. HTTP状态码及含义</h4><ul>
+<li><p>1xx:信息状态码</p>
+<ul>
+<li>100  continue 继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息</li>
+</ul>
+</li>
+<li><p>2xx:成功状态码</p>
+<ul>
+<li>200 ok 正常返回信息</li>
+<li>201 created 请求成功并且服务器创建了新的资源</li>
+<li>202 Accepted 服务器已接受请求，但尚未处理</li>
+</ul>
+</li>
+<li><p>3xx 重定向</p>
+<ul>
+<li>301 请求的网页已永久移动到新位置</li>
+<li>302 临时性重定向</li>
+<li>304 自从上次请求后，请求的网页未修改过</li>
+</ul>
+</li>
+<li><p>4xx: 客户端错误</p>
+<ul>
+<li>400 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发送请求</li>
+<li>401 请求未授权</li>
+<li>403 禁止访问</li>
+<li>404 找不到如何与URI相匹配的资源</li>
+</ul>
+</li>
+<li><p>5xx: 服务器错误</p>
+<ul>
+<li>500 最常见的服务器端错误</li>
+<li>503 服务器端暂时无法处理请求</li>
+</ul>
+<p>​    </p>
+</li>
+</ul>
+<h4 id="7-语义化的理解"><a href="#7-语义化的理解" class="headerlink" title="7. 语义化的理解"></a>7. 语义化的理解</h4><ul>
+<li><p>用正确的标签做正确的事情</p>
+</li>
+<li><p>HTML语义化就是让页面的内容结构化，便于对浏览器，搜索引擎解析</p>
+</li>
+<li><p>在没有样式CSS情况下也以一种文档格式显示，并且是容易阅读的</p>
+</li>
+<li><p>搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于SEO</p>
+</li>
+<li><p>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解</p>
+</li>
+</ul>
+<h4 id="8-介绍一下你对浏览器内核的理解"><a href="#8-介绍一下你对浏览器内核的理解" class="headerlink" title="8. 介绍一下你对浏览器内核的理解"></a>8. 介绍一下你对浏览器内核的理解</h4><ul>
+<li><p>主要分为两部分：渲染引擎和JS引擎</p>
+</li>
+<li><p>渲染引擎：负责取得网页的内容，整理讯息，以及计算网页的显示方式，然后会输出至显示器。</p>
+</li>
+<li><p>jS引擎则：解析和执行JavaScript来实现网页的动态效果</p>
+</li>
+</ul>
+<h4 id="9-HTML5有哪些新特性，移除了哪些元素？"><a href="#9-HTML5有哪些新特性，移除了哪些元素？" class="headerlink" title="9. HTML5有哪些新特性，移除了哪些元素？"></a>9. HTML5有哪些新特性，移除了哪些元素？</h4><p>新增功能</p>
+<ul>
+<li>绘画canvas</li>
+<li>用于媒介回放的video和audio元素</li>
+<li>本地离线存储localStorage长期存储数据，浏览器关闭后数据不丢失</li>
+<li>sessionStorage的数据在浏览器关闭后自动删除</li>
+<li>语义化更好的内容元素，比如artcle，footer，header，nav，section</li>
+<li>表单控件， url，email，time，date</li>
+<li>新的技术：webwoker。websocket</li>
+</ul>
+<p>移除功能</p>
+<ul>
+<li>移除一些标签</li>
+</ul>
+<p>之处HTML5新标签</p>
+<ul>
+<li>IE8/IE7等浏览器支持通过<code>document.createElement</code>方法产生的标签</li>
+<li>可以利用这一特性让这些浏览器支持HTML5新标签</li>
+</ul>
+<h4 id="10-请描述一下cookies，sessionStorage和localStorage的区别？"><a href="#10-请描述一下cookies，sessionStorage和localStorage的区别？" class="headerlink" title="10. 请描述一下cookies，sessionStorage和localStorage的区别？"></a>10. 请描述一下cookies，sessionStorage和localStorage的区别？</h4><ul>
+<li><p>cookie是网站为了标示用户身份而储存在用户本地终端上的数据</p>
+</li>
+<li><p>cookie数据始终在同源的http请求中携带(即使不需要)，记会在浏览器和服务器间来回传递</p>
+</li>
+<li><p>sessionStroage和localStorage不会自动把数据发给服务器，仅在本地保存</p>
+</li>
+<li><p>存储大小：</p>
+<ul>
+<li>cookie数据大小不能超过4k</li>
+<li>sessionStorage和localStorage虽然也有存储大小的限制，但比cookie大的多，可以达到5m或更大</li>
+</ul>
+</li>
+<li><p>有效时间</p>
+<ul>
+<li>localStorage存储持久数据，浏览器关闭后数据不丢失除非主动删除数据</li>
+<li>sessionStorage数据在当前浏览器窗口关闭后自动删除</li>
+<li>cookie设置的cookie在cookie过期时间之前一直有效，即使窗口或浏览器关闭</li>
+</ul>
+</li>
+</ul>
+<h4 id="11-iframe有哪些缺点"><a href="#11-iframe有哪些缺点" class="headerlink" title="11. iframe有哪些缺点"></a>11. iframe有哪些缺点</h4><ul>
+<li>iframe会阻塞主页面的Onload事件</li>
+<li>搜索引擎的检查程序无法解读这种页面，不利于SEO</li>
+<li>iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载</li>
+<li>使用iframe之前需要考虑着两个缺点。如果需要使用iframe最好是通过JavaScript动态给iframe添加src属性</li>
+</ul>
+<h4 id="12-WEB标准以及W3C标准是什么？"><a href="#12-WEB标准以及W3C标准是什么？" class="headerlink" title="12. WEB标准以及W3C标准是什么？"></a>12. WEB标准以及W3C标准是什么？</h4><p>web标准</p>
+<p>html是表现。css是结构，JavaScript是行为</p>
+<p>w3c标准</p>
+<p>对于表现要求</p>
+<ul>
+<li>标签字母要小写</li>
+<li>标签要闭合</li>
+<li>标签不允许随意嵌套</li>
+</ul>
+<p>对于css和js来说</p>
+<ul>
+<li>尽量使用外链css样式表和js脚本</li>
+<li>样式尽量少用行间样式表，使结构与表现分离，标签id和class等属性命名要做到见文知义</li>
+</ul>
+<h4 id="13-Doctype作用？"><a href="#13-Doctype作用？" class="headerlink" title="13. Doctype作用？"></a>13. Doctype作用？</h4><ul>
+<li><code>&lt;!DOCTYPE&gt;</code>声明位于文档中的最前面，处于<code>&lt;html&gt;</code>标签之前。告知浏览器的解析器，用什么文档类型规范来解析这个文档</li>
+</ul>
+<h4 id="14-HTML全局属性有哪些"><a href="#14-HTML全局属性有哪些" class="headerlink" title="14. HTML全局属性有哪些"></a>14. HTML全局属性有哪些</h4><ul>
+<li>class：为元素设置类标示</li>
+<li>data-*: 为元素增加自定义属性</li>
+<li>draggable： 设置元素是否可拖拽</li>
+<li>id：元素id，文档内唯一</li>
+<li>lang；元素内容的语言</li>
+<li>style：行内css样式</li>
+<li>title：元素相关的建议信息</li>
+</ul>
+<h4 id="15-你能描述一下渐进增强和优雅降级之间的不同吗？"><a href="#15-你能描述一下渐进增强和优雅降级之间的不同吗？" class="headerlink" title="15. 你能描述一下渐进增强和优雅降级之间的不同吗？"></a>15. 你能描述一下渐进增强和优雅降级之间的不同吗？</h4><ul>
+<li>渐进增强：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果，交互等改进和追加功能达到更好的用户体验</li>
+<li>优雅降级：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容</li>
+</ul>
+<blockquote>
+<p>区别：优雅降级是从复杂的现状开始，并视图减少用户体验的供给，而渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要。降级(功能衰减)意味着往后看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带</p>
+</blockquote>
+<h4 id="16-简述一下src与href的区别"><a href="#16-简述一下src与href的区别" class="headerlink" title="16. 简述一下src与href的区别"></a>16. 简述一下src与href的区别</h4><ul>
+<li>src用于替换当前元素，href用于在当前文档和引用资源之间确立关系</li>
+<li>src，指向外部资源的位置，指向的内容将会嵌入到文档中当前标签所在的位置；在请求src资源时会将其指向的资源下载并应用到文档内，例如JS脚本img图片和frame等元素</li>
+</ul>
+<blockquote>
+<p><code>&lt;script src=&quot;js.js&quot;&gt;&lt;/script&gt;</code>当浏览器解析到元素时，会暂停其他资源的下载和处理，直到将该资源加载，编译，执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将js脚本放在底部而不是头部</p>
+</blockquote>
+<ul>
+<li>href 指向网络资源所在位置，建立和当前元素或当前文档之间的连接，如果我们在文档中添加<code>&lt;link href=&quot;common.css&quot; rel=&quot;stylesheet&quot;&gt;</code>bane浏览器会识别该文档为css文件，就会并行下载资源并且不会停止对当前文档的处理</li>
+</ul>
+<h4 id="17-页面访问cookie的限制条件"><a href="#17-页面访问cookie的限制条件" class="headerlink" title="17. 页面访问cookie的限制条件"></a>17. 页面访问cookie的限制条件</h4><p>cookie(存储在用户本地终端上的数据)</p>
+<p>cookie指某些网站为了辨别用户身份，进行session跟踪而存储在用户本地终端上的数据</p>
+<ol>
+<li>跨域问题：</li>
+</ol>
+<p><code>cookie</code>允许web开发者保留他们的用户的登录状态。但是当你的站点有一个以上的域名时就会出现问题了。在<code>cookie</code>规范上说，一个<code>cookie</code>只能用于一个域名，不能够发给其他的域名。因此在浏览器群中对一个域名设置了一个<code>cookie</code>，这个<code>cookie</code>对其他域名将无效</p>
+<p>解决：</p>
+<ul>
+<li>通过nginx反向代理</li>
+<li>jsonp方式请求</li>
+</ul>
+<ol start="2">
+<li>设置了 HTTP only：</li>
+</ol>
+<p>如果在cookie中设置了<code>HttpOnly</code>属性，那么通过程序(JS脚本)将无法读取<code>cookie</code>信息，这样能有效的防止<code>XSS</code>攻击</p>
+<h4 id="cookie的作用于弊端"><a href="#cookie的作用于弊端" class="headerlink" title="cookie的作用于弊端"></a>cookie的作用于弊端</h4><p>cookie的作用</p>
+<ul>
+<li><p>可以在客户端保存用户数据，起到简单的缓存和用户身份识别等作用</p>
+</li>
+<li><p>保存用户的登录状态，用户进行登录，成功登录后，服务器生成特点的cookie返回给客户端，客户端下次访问该域名下的任何页面，将该cookie的信息发送给服务器，服务器经过检验，来判断用户是否登录</p>
+</li>
+<li><p>记录用户的行为</p>
+</li>
+</ul>
+<p>cookie弊端</p>
+<ul>
+<li>增加流量消耗，每次请求都需要带上cookie信息</li>
+<li>安全性隐患，cookie使用明文传输，如果cookie被人拦截，那么就可以取得所有session信息</li>
+<li>cookie数量和长度的限制。每个域名下最多只能有20条cookie，每个cookie长度不能超过4kb，否则会被截掉</li>
+</ul>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">刘如刚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.liurugang.cn/posts/7559/">http://blog.liurugang.cn/posts/7559/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.liurugang.cn" target="_blank">无聊才读书-博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/HCLonely/hclonely.github.io/img/Butterfly/006.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/40620/"><img class="prev-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">pm2</div></div></a></div><div class="next-post pull-right"><a href="/posts/35712/"><img class="next-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">剖析JavaScriptAMDCMDCOMMONJSES6模块化</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 刘如刚</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 4.2.1"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

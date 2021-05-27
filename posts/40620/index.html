@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>pm2 | 无聊才读书-博客</title><meta name="description" content="pm2背景对于线上项目，如果直接用node app 来启动，如果报错了，可能直接停止导致整个服务器崩溃，一般监控node有几种方案  supervisor： 一般用作开发环境的使用 forever：管理多个站点，一般每个站点的访问量不大的情况，不需要监控 PM2:网站的访问量比较大，需要完整的监控页面  PM2的主要特性 内部负载均衡 后台运行 0秒停机重载，我理解大概意思是维护升级的时候不需要停"><meta name="keywords" content="Vue,面试,ES6,webpack,node,前端"><meta name="author" content="刘如刚"><meta name="copyright" content="刘如刚"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://blog.liurugang.cn/posts/40620/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="pm2"><meta property="og:url" content="http://blog.liurugang.cn/posts/40620/"><meta property="og:site_name" content="无聊才读书-博客"><meta property="og:description" content="pm2背景对于线上项目，如果直接用node app 来启动，如果报错了，可能直接停止导致整个服务器崩溃，一般监控node有几种方案  supervisor： 一般用作开发环境的使用 forever：管理多个站点，一般每个站点的访问量不大的情况，不需要监控 PM2:网站的访问量比较大，需要完整的监控页面  PM2的主要特性 内部负载均衡 后台运行 0秒停机重载，我理解大概意思是维护升级的时候不需要停"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2021-01-26T10:50:05.436Z"><meta property="article:modified_time" content="2021-01-26T10:51:49.733Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="Nuxt.js实战和配置" href="http://blog.liurugang.cn/posts/39766/"><link rel="next" title="html面试题" href="http://blog.liurugang.cn/posts/7559/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-01-26 18:51:49'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pm2"><span class="toc-number">1.</span> <span class="toc-text">pm2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PM2的主要特性"><span class="toc-number">1.2.</span> <span class="toc-text">PM2的主要特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.3.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">1.4.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置PM2启动文件"><span class="toc-number">1.5.</span> <span class="toc-text">配置PM2启动文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pm2-config-js"><span class="toc-number">1.5.1.</span> <span class="toc-text">pm2.config.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡"><span class="toc-number">1.5.2.</span> <span class="toc-text">负载均衡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配合pm2-web实现监控可视化"><span class="toc-number">1.6.</span> <span class="toc-text">配合pm2-web实现监控可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-1"><span class="toc-number">1.6.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">1.6.2.</span> <span class="toc-text">使用</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">无聊才读书-博客</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">pm2</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-01-26 18:50:05"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-01-26</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-01-26 18:51:49"><i class="fas fa-history fa-fw"></i> 更新于 2021-01-26</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>对于线上项目，如果直接用node app 来启动，如果报错了，可能直接停止导致整个服务器崩溃，一般监控node有几种方案</p>
+<ul>
+<li>supervisor： 一般用作开发环境的使用</li>
+<li>forever：管理多个站点，一般每个站点的访问量不大的情况，不需要监控</li>
+<li>PM2:网站的访问量比较大，需要完整的监控页面</li>
+</ul>
+<h2 id="PM2的主要特性"><a href="#PM2的主要特性" class="headerlink" title="PM2的主要特性"></a>PM2的主要特性</h2><ul>
+<li>内部负载均衡</li>
+<li>后台运行</li>
+<li>0秒停机重载，我理解大概意思是维护升级的时候不需要停机</li>
+<li>具有Ubuntu和CentOS的启动脚本</li>
+<li>停止不稳定的进程(避免无限循环)</li>
+<li>控制台检测</li>
+<li>提供HTTP API</li>
+<li>远程控制和实时的API</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局安装pm2，依赖node和npm</span></span><br><span class="line">npm install -g pm2</span><br></pre></td></tr></table></figure>
+
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><ul>
+<li>基本启动命令</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//pm2 start</span></span><br><span class="line"><span class="comment">//start命令启动对应的node server文件</span></span><br><span class="line">pm2 start ./build/server.js</span><br></pre></td></tr></table></figure>
+
+<p>启动之后，控制台会看到如下消息：</p>
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2ba717997b20?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<blockquote>
+<p>如上图所示，可以看到项目kafazhe启动成功，id是0，并且状态是online</p>
+</blockquote>
+<ul>
+<li>查看详细状态信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pm2 show (appname|id)</span><br><span class="line">pm2 show kaifazhe</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2bae6ed0fb41?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<blockquote>
+<p>如上图所示，可以查看kaifazhe进程的详细信息</p>
+</blockquote>
+<ul>
+<li>查看所有启动的进程列表</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 list</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2ba717997b20?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<ul>
+<li>监控每个node进程对的cpu和内存使用情况</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 monit</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b9519339ad1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<blockquote>
+<p>可以使用pm2 monit功能监控所有node进程的运行情况，包括各种响应，错误信息</p>
+</blockquote>
+<ul>
+<li>显示所有进程的日志</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 logs</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95198103f3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<ul>
+<li>监控运行这些进程的机器的状态</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 web</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95199a77a9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<ul>
+<li>停止 指定/所有进程</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 stop (id|all)</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<blockquote>
+<p>如图，我们运行了两个服务状态都是online，使用stop 0 之后，kaifazhe的服务编程了stopped，然后使用stop all，所有进程状态变成了stopped</p>
+</blockquote>
+<ul>
+<li>启动 指定/所有进程</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 restart (id|all)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>杀死 指定/所有进程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 delete (id|all)</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b9552c23eaa?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<blockquote>
+<p>从上图我们可以看出，restart 0 之后，0进程从stopped状态变成了online，然后我们使用delete 0，进程0 就消失不见了，我们再delete all,可以看到现在没有任何进程在运行。</p>
+</blockquote>
+<h2 id="配置PM2启动文件"><a href="#配置PM2启动文件" class="headerlink" title="配置PM2启动文件"></a>配置PM2启动文件</h2><p>pm2启动的方式可以进行很多的扩展，比如设置环境，设置错误信息打印，设置输入信息打印等等高级功能。那么一条命令就不能完成这些任务，所有pm2提供了配置文件的方式来启动</p>
+<h3 id="pm2-config-js"><a href="#pm2-config-js" class="headerlink" title="pm2.config.js"></a>pm2.config.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  apps: [</span><br><span class="line">    &#123;</span><br><span class="line">      name: <span class="string">'kaifazhe'</span>, <span class="comment">// 应用名称</span></span><br><span class="line">      script: <span class="string">'./build/server.js'</span>, <span class="comment">// 启动文件地址</span></span><br><span class="line">      cwd: <span class="string">'./'</span>, <span class="comment">// 当前工作路径</span></span><br><span class="line">      watch: [</span><br><span class="line">        <span class="comment">// 监控变化的目录，一旦变化，自动重启</span></span><br><span class="line">        <span class="string">'src'</span>,</span><br><span class="line">        <span class="string">'build'</span>,</span><br><span class="line">      ],</span><br><span class="line">      ignore_watch: [</span><br><span class="line">        <span class="comment">// 忽视这些目录的变化</span></span><br><span class="line">        <span class="string">'node_modules'</span>,</span><br><span class="line">        <span class="string">'logs'</span>,</span><br><span class="line">        <span class="string">'public'</span>,</span><br><span class="line">      ],</span><br><span class="line">      node_args: <span class="string">'--harmony'</span>, <span class="comment">// node的启动模式</span></span><br><span class="line">      env: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">'development'</span>, <span class="comment">// 设置运行环境，此时process.env.NODE_ENV的值就是development</span></span><br><span class="line">        ORIGIN_ADDR: <span class="string">'http://www.yoduao.com'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      env_production: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">'production'</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      out_file: <span class="string">'./logs/out.log'</span>, <span class="comment">// 普通日志路径</span></span><br><span class="line">      error_file: <span class="string">'./logs/err.log'</span>, <span class="comment">// 错误日志路径</span></span><br><span class="line">      merge_logs: <span class="literal">true</span>,</span><br><span class="line">      log_date_format: <span class="string">'YYYY-MM-DD HH:mm Z'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>pm2厉害的点是，自动给你做负载均衡，只需要一条命令</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pm2 start server.js -i (number|max)</span><br><span class="line"><span class="comment">//开启三个进程运行项目</span></span><br><span class="line">pm2 start app.js -i <span class="number">3</span></span><br><span class="line"><span class="comment">//根据机器CPU核数，开启对应数目的进程运行项目</span></span><br><span class="line">pm2 start app.hs <span class="number">04</span>-i max</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置文件里对应的：<code>&quot;instance&quot;:(number|max)</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//pm2 config.js</span></span><br><span class="line">“instances”:<span class="number">2</span> <span class="comment">//启动两个实例</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配合pm2-web实现监控可视化"><a href="#配合pm2-web实现监控可视化" class="headerlink" title="配合pm2-web实现监控可视化"></a>配合pm2-web实现监控可视化</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g pm2-web</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>默认pm2-web会自动启动一个8080，但是我们还是喜欢可控状态，因此安装配置文件的方法启动</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2-web --config pm2-web-config.json</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"www"</span>:&#123;</span><br><span class="line">        <span class="string">"host"</span>:<span class="string">"localhost"</span>,</span><br><span class="line">         <span class="string">"address"</span>:<span class="string">"0.0.0.0"</span>,</span><br><span class="line">          <span class="string">"port"</span>:<span class="number">6666</span>   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样你就要可以在浏览器查看可视化的监控状态了</p>
+<p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2018/11/9/166f7afa936b0fd7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">刘如刚</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.liurugang.cn/posts/40620/">http://blog.liurugang.cn/posts/40620/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.liurugang.cn" target="_blank">无聊才读书-博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/HCLonely/hclonely.github.io/img/Butterfly/006.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/39766/"><img class="prev-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Nuxt.js实战和配置</div></div></a></div><div class="next-post pull-right"><a href="/posts/7559/"><img class="next-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">html面试题</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 刘如刚</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 4.2.1"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
