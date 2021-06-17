@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>面试题整理 | 无聊才读书-博客</title><meta name="description" content="面试题整理CSS 介绍一下标准的css的盒子模型，与低版本IE的盒子模型有什么不同？介绍一下box-sizing属性  css选择器有哪些？哪些属性可以继承？  CSS优先级如何计算  如何让一个div水平垂直居中  常见的布局有哪些  CSS3有哪些新特性  介绍一下flex布局  常见的兼容性问题  关于BFC规范的理解  为什么会出现浮动和什么时候清浮动？清浮动的方式  浏览器是怎样解析CS"><meta name="keywords" content="Vue,面试,ES6,webpack,node,前端"><meta name="author" content="刘如刚"><meta name="copyright" content="刘如刚"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://blog.liurugang.cn/posts/10276/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="面试题整理"><meta property="og:url" content="http://blog.liurugang.cn/posts/10276/"><meta property="og:site_name" content="无聊才读书-博客"><meta property="og:description" content="面试题整理CSS 介绍一下标准的css的盒子模型，与低版本IE的盒子模型有什么不同？介绍一下box-sizing属性  css选择器有哪些？哪些属性可以继承？  CSS优先级如何计算  如何让一个div水平垂直居中  常见的布局有哪些  CSS3有哪些新特性  介绍一下flex布局  常见的兼容性问题  关于BFC规范的理解  为什么会出现浮动和什么时候清浮动？清浮动的方式  浏览器是怎样解析CS"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2021-06-15T08:00:32.462Z"><meta property="article:modified_time" content="2021-06-15T10:56:06.828Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>面试题整理 | 无聊才读书-博客</title><meta name="description" content="面试题整理CSS 介绍一下标准的css的盒子模型，与低版本IE的盒子模型有什么不同？介绍一下box-sizing属性 css选择器有哪些？哪些属性可以继承？ CSS优先级如何计算 如何让一个div水平垂直居中 常见的布局有哪些 CSS3有哪些新特性 介绍一下flex布局 关于BFC规范的理解 为什么会出现浮动和什么时候清浮动？清浮动的方式 浏览器是怎样解析CSS选择器的 link和@import的"><meta name="keywords" content="Vue,面试,ES6,webpack,node,前端"><meta name="author" content="刘如刚"><meta name="copyright" content="刘如刚"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://blog.liurugang.cn/posts/10276/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="面试题整理"><meta property="og:url" content="http://blog.liurugang.cn/posts/10276/"><meta property="og:site_name" content="无聊才读书-博客"><meta property="og:description" content="面试题整理CSS 介绍一下标准的css的盒子模型，与低版本IE的盒子模型有什么不同？介绍一下box-sizing属性 css选择器有哪些？哪些属性可以继承？ CSS优先级如何计算 如何让一个div水平垂直居中 常见的布局有哪些 CSS3有哪些新特性 介绍一下flex布局 关于BFC规范的理解 为什么会出现浮动和什么时候清浮动？清浮动的方式 浏览器是怎样解析CSS选择器的 link和@import的"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2021-06-15T08:00:32.462Z"><meta property="article:modified_time" content="2021-06-17T10:33:59.518Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -89,7 +89,7 @@ if (autoChangeMode === '1') {
   isHome: false,
   isHighlightShrink: false,
   isSidebar: true,
-  postUpdate: '2021-06-15 18:56:06'
+  postUpdate: '2021-06-17 18:33:59'
 }</script><noscript><style>
 #nav {
   opacity: 1
@@ -97,91 +97,50 @@ if (autoChangeMode === '1') {
 .justified-gallery img{
   opacity: 1
 }
-</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#面试题整理"><span class="toc-number">1.</span> <span class="toc-text">面试题整理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-number">1.1.</span> <span class="toc-text">CSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript"><span class="toc-number">1.3.</span> <span class="toc-text">JavaScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue"><span class="toc-number">1.4.</span> <span class="toc-text">Vue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack"><span class="toc-number">1.5.</span> <span class="toc-text">webpack</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">无聊才读书-博客</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">面试题整理</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-06-15 16:00:32"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-06-15</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-06-15 18:56:06"><i class="fas fa-history fa-fw"></i> 更新于 2021-06-15</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="面试题整理"><a href="#面试题整理" class="headerlink" title="面试题整理"></a>面试题整理</h1><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ol>
-<li><p>介绍一下标准的css的盒子模型，与低版本IE的盒子模型有什么不同？介绍一下<code>box-sizing</code>属性</p>
-</li>
-<li><p>css选择器有哪些？哪些属性可以继承？</p>
-</li>
-<li><p>CSS优先级如何计算</p>
-</li>
-<li><p>如何让一个div水平垂直居中</p>
-</li>
-<li><p>常见的布局有哪些</p>
-</li>
-<li><p>CSS3有哪些新特性</p>
-</li>
-<li><p>介绍一下flex布局</p>
-</li>
-<li><p>常见的兼容性问题</p>
-</li>
-<li><p>关于BFC规范的理解</p>
-</li>
-<li><p>为什么会出现浮动和什么时候清浮动？清浮动的方式</p>
-</li>
-<li><p>浏览器是怎样解析CSS选择器的</p>
-</li>
-<li><p><code>link</code>和<code>@import</code>的区别</p>
-</li>
-<li><p>重绘和回流</p>
-</li>
-<li><p>解决移动端下1px像素问题</p>
-</li>
-<li><p>CSS动画有哪些？</p>
-</li>
-<li><p>如何实现小于12px的字体效果</p>
-</li>
-<li><p>px/em/rem/vw 区别</p>
-</li>
-<li><p>伪类和伪元素的区别</p>
-</li>
-<li><p>层叠上下文</p>
-</li>
-<li><p><code>css sprite</code>是什么。有什么优缺点</p>
-</li>
-<li><p><code>display:inline-block</code>什么时候不会显示间隙？</p>
-</li>
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Chocolate1999/cdn/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">22</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#面试题整理"><span class="toc-number">1.</span> <span class="toc-text">面试题整理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-number">1.1.</span> <span class="toc-text">CSS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript"><span class="toc-number">1.3.</span> <span class="toc-text">JavaScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue"><span class="toc-number">1.4.</span> <span class="toc-text">Vue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack"><span class="toc-number">1.5.</span> <span class="toc-text">webpack</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">无聊才读书-博客</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">面试题整理</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-06-15 16:00:32"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-06-15</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-06-17 18:33:59"><i class="fas fa-history fa-fw"></i> 更新于 2021-06-17</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="面试题整理"><a href="#面试题整理" class="headerlink" title="面试题整理"></a>面试题整理</h1><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ol>
+<li>介绍一下标准的css的盒子模型，与低版本IE的盒子模型有什么不同？介绍一下<code>box-sizing</code>属性</li>
+<li>css选择器有哪些？哪些属性可以继承？</li>
+<li>CSS优先级如何计算</li>
+<li>如何让一个div水平垂直居中</li>
+<li>常见的布局有哪些</li>
+<li>CSS3有哪些新特性</li>
+<li>介绍一下flex布局</li>
+<li>关于BFC规范的理解</li>
+<li>为什么会出现浮动和什么时候清浮动？清浮动的方式</li>
+<li>浏览器是怎样解析CSS选择器的</li>
+<li><code>link</code>和<code>@import</code>的区别</li>
+<li>重绘和回流</li>
+<li>解决移动端下1px像素问题</li>
+<li>CSS动画有哪些？</li>
+<li>如何实现小于12px的字体效果</li>
+<li>px/em/rem/vw 区别</li>
+<li>伪类和伪元素的区别</li>
+<li>层叠上下文</li>
+<li><code>css sprite</code>是什么。有什么优缺点</li>
+<li><code>display:inline-block</code>什么时候不会显示间隙？</li>
+<li>常见的兼容性问题</li>
 </ol>
 <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><ol>
-<li><p>HTTP 有哪些方法，具体作用是什么</p>
-</li>
-<li><p>GET 和POST有什么区别</p>
-</li>
-<li><p>如何进行网站性能优化</p>
-</li>
-<li><p>HTTP状态码及含义</p>
-</li>
-<li><p>从浏览器地址输入url到显示页面的步骤</p>
-</li>
-<li><p>浏览器缓存机制</p>
-</li>
-<li><p>请描述一下<code>cookies</code>，<code>sessionStorage</code>和<code>localStorage</code>的区别</p>
-</li>
-<li><p>HTML5有哪些新特性？</p>
-</li>
-<li><p>介绍一下对浏览器内核的理解</p>
-</li>
-<li><p>为什么利用多个域名来存储网站资源会更有效</p>
-</li>
-<li><p>前端安全(xss和CSRF)</p>
-</li>
-<li><p>介绍一下HTTP1.0,HTTP1.1,HTTP2.0</p>
-</li>
-<li><p>谈谈你对TCP三次握手和四次挥手的理解</p>
-</li>
-<li><p>介绍一下DNS</p>
-</li>
-<li><p>浏览器下事件循环(Event Loop)</p>
-</li>
-<li><p>Node的Event Loop 6个阶段</p>
-</li>
-<li><p>简述一下<code>src</code>与<code>href</code>的区别</p>
-</li>
-<li><p>对<code>WEB</code>标准和W3C的理解与认识</p>
-</li>
-<li><p>HTML5新特性</p>
-</li>
-<li><p>简述src和href的区别</p>
-</li>
+<li>HTTP 有哪些方法，具体作用是什么</li>
+<li>GET 和POST有什么区别</li>
+<li>HTTP状态码及含义</li>
+<li>请描述一下<code>cookies</code>，<code>sessionStorage</code>和<code>localStorage</code>的区别</li>
+<li>简述一下<code>src</code>与<code>href</code>的区别</li>
+<li>介绍一下对浏览器内核的理解</li>
+<li>为什么利用多个域名来存储网站资源会更有效</li>
+<li>前端安全(xss和CSRF)</li>
+<li>TCP和UDP的区别</li>
+<li>介绍一下三次握手和四次挥手</li>
+<li><code>WebSocket</code>的实现和应用</li>
+<li>iframe是什么？有什么缺点？</li>
+<li>谈谈你对TCP三次握手和四次挥手的理解</li>
+<li>介绍一下DNS</li>
+<li>浏览器下事件循环(Event Loop)</li>
+<li>Node的Event Loop 6个阶段</li>
+<li>HTML5新特性</li>
+<li>浏览器缓存机制</li>
+<li>如何进行网站性能优化</li>
+<li>从浏览器地址输入url到显示页面的步骤</li>
 </ol>
 <h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><ol>
 <li>闭包</li>
